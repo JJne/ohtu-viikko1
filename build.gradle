@@ -10,13 +10,6 @@ plugins {
     id 'com.github.kt3k.coveralls' version '2.8.1'
 }
 
-jacocoTestReport {
-    reports {
-        xml.enabled = true // coveralls plugin depends on xml format report
-        html.enabled = true
-    }
-}
-
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
@@ -47,5 +40,12 @@ mainClassName = 'ohtu.ohtuvarasto.Main'
 jar {
     manifest {
         attributes 'Main-Class': 'ohtu.ohtuvarasto.Main'
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
     }
 }
