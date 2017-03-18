@@ -125,6 +125,6 @@ public class VarastoTest {
     @Test
     public void konstruktoriAlustaaTilavuudenNollaksiJosAnnettuAlleNollaJaSaldoAnnettu() {
         Varasto varasto2 = new Varasto(-5, 0);
-        assertEquals(5, varasto2.getTilavuus(), vertailuTarkkuus);
+        assertEquals(0, varasto2.getTilavuus(), vertailuTarkkuus);
     }
 }
