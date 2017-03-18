@@ -64,5 +64,67 @@ public class VarastoTest {
         // varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
+    
+    @Test
+    public void lisataanLiikaa() {
+        varasto.lisaaVarastoon(15);
 
+        // varastossa pitäisi olla tilaa 0
+        assertEquals(0, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void otetaanLiikaa() {
+        varasto.lisaaVarastoon(5);
+        // varastossa pitäisi olla tilaa 0
+        assertEquals(5, varasto.otaVarastosta(15), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriAlustaaSaldon() {
+        Varasto varasto2 = new Varasto(10, 5);
+        assertEquals(5, varasto2.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriAlustaaSaldonNollaksiJosSaldoAlleNolla() {
+        Varasto varasto2 = new Varasto(10, -5);
+        assertEquals(0, varasto2.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriAlustaaSaldonTilavuudeksiJosYlittaaTilavuuden() {
+        Varasto varasto2 = new Varasto(10, 15);
+        assertEquals(10, varasto2.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void toStringPalauttaaOikein() {
+        Varasto varasto2 = new Varasto(10, 5);
+        String teksti = "saldo = 5.0, vielä tilaa 5.0";
+        assertEquals(teksti, varasto2.toString());
+    }
+    
+    @Test
+    public void saldoEiMuutuJosLisattavaMaaraAlleNolla() {
+        varasto.lisaaVarastoon(-5);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void ottaminenPalauttaaNollaJosMaaraAlleNolla() {
+        assertEquals(0, varasto.otaVarastosta(-5), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriAlustaaTilavuudenNollaksiJosAnnettuAlleNolla() {
+        Varasto varasto2 = new Varasto(-5);
+        assertEquals(0, varasto2.getTilavuus(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktoriAlustaaTilavuudenNollaksiJosAnnettuAlleNollaJaSaldoAnnettu() {
+        Varasto varasto2 = new Varasto(-5, 0);
+        assertEquals(0, varasto2.getTilavuus(), vertailuTarkkuus);
+    }
 }
